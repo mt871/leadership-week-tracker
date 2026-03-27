@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yalo Leadership Week — Action Items by Owner</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1a1d27 0%, #252a3a 100%); padding: 32px 40px 24px; border-bottom: 1px solid #2d3348; }
+  .header h1 { font-size: 22px; font-weight: 600; color: #fff; }
+  .header .subtitle { font-size: 13px; color: #8b92a5; margin-top: 4px; }
+  .top-bar { display: flex; gap: 20px; padding: 16px 40px; background: #161822; border-bottom: 1px solid #2d3348; align-items: center; flex-wrap: wrap; }
+  .stat { text-align: center; padding-right: 20px; border-right: 1px solid #2d3348; }
+  .stat:last-of-type { border-right: none; }
+  .stat-number { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 10px; color: #8b92a5; text-transform: uppercase; letter-spacing: 1px; }
+  .nav { display: flex; gap: 6px; padding: 16px 40px; background: #13151d; border-bottom: 1px solid #2d3348; flex-wrap: wrap; align-items: center; }
+  .nav-label { font-size: 11px; color: #555a70; text-transform: uppercase; letter-spacing: 1px; margin-right: 8px; }
+  .nav-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #6b7280; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; }
+  .nav-btn:hover { color: #e1e4e8; background: #1e2130; }
+  .nav-btn.active { background: #4a7dff; color: #fff; border-color: #4a7dff; }
+  .nav-btn .count { display: inline-block; background: rgba(255,255,255,0.15); padding: 1px 6px; border-radius: 4px; font-size: 10px; margin-left: 4px; }
+  .main { padding: 24px 40px 80px; }
+  .person-card { background: #161822; border: 1px solid #2d3348; border-radius: 12px; margin-bottom: 28px; overflow: hidden; }
+  .person-card.highlight { border-color: #4a7dff; }
+  .pc-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-bottom: 1px solid #2d3348; }
+  .avatar { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #fff; flex-shrink: 0; }
+  .pc-info { flex: 1; }
+  .pc-name { font-size: 18px; font-weight: 600; color: #fff; }
+  .pc-email { font-size: 12px; color: #6b7280; margin-top: 2px; }
+  .pc-stats { display: flex; gap: 16px; align-items: center; }
+  .pc-progress { text-align: right; }
+  .pc-progress-text { font-size: 22px; font-weight: 700; color: #fff; }
+  .pc-progress-label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+  .progress-ring { width: 48px; height: 48px; }
+  .progress-ring-bg { fill: none; stroke: #2d3348; stroke-width: 4; }
+  .progress-ring-fill { fill: none; stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; transform: rotate(-90deg); transform-origin: center; }
+  .pc-items { padding: 8px 0; }
+  .item-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 24px; cursor: pointer; transition: background 0.15s; border-left: 3px solid transparent; }
+  .item-row:hover { background: #1a1d2a; }
+  .item-row.checked { opacity: 0.45; }
+  .item-row.checked .item-text { text-decoration: line-through; }
+  .item-row.overdue { border-left-color: #f43f5e; }
+  .item-row.due-soon { border-left-color: #fbbf24; }
+  .cb { width: 20px; height: 20px; border-radius: 5px; border: 2px solid #3d4460; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; transition: all 0.15s; }
+  .cb.checked { background: #4a7dff; border-color: #4a7dff; }
+  .cb.checked::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 700; }
+  .item-body { flex: 1; min-width: 0; }
+  .item-text { font-size: 14px; line-height: 1.5; color: #e1e4e8; }
+  .item-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 500; white-space: nowrap; }
+  .tag-area { background: rgba(74,125,255,0.12); color: #7aa2ff; }
+  .tag-date { background: rgba(251,191,36,0.12); color: #fbbf24; }
+  .tag-overdue { background: rgba(244,63,94,0.15); color: #f43f5e; }
+  .tag-collab { background: rgba(129,199,132,0.10); color: #81c784; }
+  .goal-section { padding: 12px 24px 16px; border-top: 1px solid #2d3348; background: rgba(74,125,255,0.04); }
+  .goal-label { font-size: 10px; color: #4a7dff; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
+  .goal-text { font-size: 13px; color: #c9d1d9; line-height: 1.5; padding-left: 12px; border-left: 2px solid #4a7dff; margin-bottom: 6px; }
+  .empty-state { text-align: center; padding: 60px; color: #555a70; font-size: 14px; }
+  .share-hint { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, #0f1117 60%, transparent); padding: 40px 40px 20px; text-align: center; }
+  .share-hint-text { font-size: 12px; color: #555a70; }
+  @media (max-width: 768px) {
+    .header, .top-bar, .nav, .main { padding-left: 16px; padding-right: 16px; }
+    .pc-header { flex-wrap: wrap; }
+    .item-row { padding: 10px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Leadership Week March 2026 — Accountability Tracker</h1>
+  <div class="subtitle">Each person owns their items. No ambiguity. Shipped by MT.</div>
+</div>
+<div class="top-bar" id="top-bar"></div>
+<div class="nav" id="nav"></div>
+<div class="main" id="main"></div>
+<script>
+const COLORS=['#4a7dff','#f43f5e','#fbbf24','#10b981','#a78bfa','#f97316','#06b6d4','#ec4899','#84cc16','#14b8a6'];
+const TODAY=new Date();
+const people=[
+{name:"Andrés Cano",email:"andres@yalo.com",goal:"Have a winning LAND retail sales agent full use case: agent starter + 2 main skills + complementing agent — on WhatsApp, app or webchat. Solutions and sales fully enabled.",items:[
+{text:"Proyecto de tool para hacer demo self service usando YaloCode / Claude Code v1",area:"Solutions",date:"04/09",collabs:[]},
+{text:"Help solutions build a better discovery and questions to ask per use case",area:"Solutions",date:"04/15",collabs:[]},
+{text:"Productizar el sales agent journey como prioridad 1",area:"Product",date:"04/30",collabs:[]},
+{text:"Weekly Update on Web/In-app readiness",area:"Product",date:"Ongoing",collabs:[]},
+{text:"Pensar en test cases de building/debugging para delivery por casos",area:"Delivery",date:"04/15",collabs:["Andres Stella","Christian Saravia"]},
+{text:"Primera versión del retail sales agent productizado",area:"Product",date:"30 days (04/25)",collabs:[]},
+{text:"Terminar de analizar condición ICP de retail (search / ecommerce / website)",area:"Product",date:"04/09",collabs:["Christian Saravia"]}]},
+{name:"Andres Stella",email:"andres.stella@yalo.com",goal:"30 días: capacitación a equipos completa. 90 días: equipo B2C completo y operando.",items:[
+{text:"Revamp propuestas para que sean realistas y re-training — hablar con Garibotti",area:"Solutions",date:"04/09",collabs:[]},
+{text:"Encontrar forma de calificar el estado de un API — hablar con Garibotti",area:"Solutions",date:"04/15",collabs:[]},
+{text:"Mandato de librería de demos pro out of the box (con Garibotti)",area:"Solutions",date:"04/15",collabs:["Christian Saravia"]},
+{text:"Buscar back up para Kix",area:"Solutions",date:"04/09",collabs:[]},
+{text:"Correr el performance assessment: incluir Custom Agent, campañas, HubSpot integration, practical tests",area:"Delivery",date:"04/15",collabs:[]},
+{text:"Validar journeys por el lado de delivery y solutions",area:"Product",date:"04/09",collabs:[]},
+{text:"Capacitación a equipos completa",area:"Delivery",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: checkpoint since last board — new industries, progreso, gaps, plan",area:"Board Prep",date:"04/15",collabs:["Rafael Karkle"]}]},
+{name:"Andy Booth",email:"andrea@yalo.com",goal:"New industries offering/positioning + website updated in 30 days — measured by 10% increase in SQLs with Doris + increased positioning.",items:[
+{text:"Reducir offering deck a 3 stages: Account management, nuevas ventas, servicios — meter tema App y tech",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
+{text:"Armar offering paquetizado + campaña de dem gen en abril",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
+{text:"Enviar resumen de offering a META",area:"Partnerships",date:"03/26",collabs:[]},
+{text:"Compartir rollout de Producto y Marketing de new channels + updates",area:"Product",date:"04/09",collabs:["Christian Saravia"]},
+{text:"Actualizar offering con el nuevo listado de journeys",area:"Product",date:"04/09",collabs:[]},
+{text:"Definir cómo implementar el pitch del nuevo offering",area:"Sales",date:"04/09",collabs:["Stephan Berger","Santiago Coppiano","Catalina Vives"]},
+{text:"Agregar condición ICP de retail en material de marketing",area:"Product",date:"04/09",collabs:[]},
+{text:"Website updated with new industries positioning",area:"Marketing",date:"30 days (04/25)",collabs:[]}]},
+{name:"Stephan Berger",email:"stephan@yalo.com",goal:"Build a sales machine: right people, right pitch, right cadence. Pipe gen sessions running weekly.",items:[
+{text:"Jessica + Bruno → dar feedback e improve su training de producto",area:"People",date:"04/09",collabs:[]},
+{text:"Hire 2 very good AEs",area:"People",date:"04/30",collabs:["Catalina Vives","Santiago Coppiano"]},
+{text:"Reducir stages en funnel retail para simplificar al cliente — evaluar si ofrecer servicio",area:"Retail",date:"04/08",collabs:["Andy Booth","Catalina Vives"]},
+{text:"New deck: sell the full vision BUT LAND only initial use cases (agent + skills)",area:"Retail",date:"04/08",collabs:["Santiago Coppiano"]},
+{text:"Coordinar sesiones de pipe gen — 1hr/week con foco en preparación y compromiso",area:"Sales",date:"Ongoing",collabs:[]},
+{text:"Todo lo comercial META verlo con Alejandro Haro",area:"Partnerships",date:"04/06",collabs:[]},
+{text:"Pitch en sales: condición ICP retail (search / ecommerce / website)",area:"Sales",date:"04/09",collabs:["Santiago Coppiano"]}]},
+{name:"Santiago Coppiano",email:"santiago.coppiano@yalo.com",goal:"Reducir time to close de nuevas industrias a 30 days. Validar palanca de Servicio y webchat + have the right team.",items:[
+{text:"Take more opportunities to better map journey and accelerate closing — financial services",area:"Fin. Services",date:"04/15",collabs:["Stephan Berger","Catalina Vives"]},
+{text:"Validar la prioridad de journeys",area:"Product",date:"04/09",collabs:["Catalina Vives"]},
+{text:"Definir la NAL (Named Account List)",area:"International",date:"04/07",collabs:[]},
+{text:"Definir indicadores de success / minimum thresholds — apalabrar y consensuar con Mau",area:"International",date:"04/07",collabs:[]},
+{text:"Coppi/Andy/Cata validar propuesta de Chris de use cases — confirmar que hacen sentido para producto",area:"Product",date:"04/09",collabs:["Andy Booth","Catalina Vives"]}]},
+{name:"Catalina Vives",email:"catalina.vives@yalo.com",goal:"Have 4 GREAT AE candidates on bench (30 days) → Hire 1-2 KEY people who will move the needle for the New Verticals Sales Team.",items:[
+{text:"Buscar financieras 'fins' sin el tec — define new ICP",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
+{text:"Bruno y Carlos prospectar bancos con los que trabaja Genesys — validar demanda",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
+{text:"Sumar condición ICP retail a outbound dem gen",area:"Marketing",date:"04/09",collabs:[]},
+{text:"Have 4 GREAT AE candidates on bench",area:"People",date:"30 days (04/25)",collabs:[]}]},
+{name:"Christian Saravia",email:"christian@yalo.com",goal:"90 days: deliver an agentic product in new industries with clear PMF (NRR >120%). 30 days: Sales Agent Retail Template v1 ready, delivering value, easy to implement.",items:[
+{text:"Agregar los 3 journeys que quedaron por fuera del listado",area:"Product",date:"03/28",collabs:[]},
+{text:"Confirmar timeline de producto y comunicar al team",area:"Product",date:"04/02",collabs:[]},
+{text:"Sales Agent Retail Template v1 ready and delivering value",area:"Product",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"04/15",collabs:["Javier Mata"]},
+{text:"Poner CAP por token per conversation (B2B) / per user (B2C) — créditos de inteligencia",area:"Pricing",date:"04/15",collabs:["Andy Booth","Santiago Coppiano"]},
+{text:"Deep dive with team building templates (Marvin, Christian)",area:"Product",date:"03/27",collabs:[]}]},
+{name:"Javier Mata",email:"javier@yalochat.com",goal:"90 days: have the CTO hired. 30 days: finalists identified. Become agentic in RnD ops — reduce time to real value by 50%.",items:[
+{text:"Define agent standard templates: Custom agents, Oris, Oris forked, or other? How to make upgradeable → productized skills/templates",area:"Engineering",date:"04/30",collabs:["Christian Saravia"]},
+{text:"Contratar CTO — 30 días finalists, 90 días CTO hired",area:"Engineering",date:"06/30",collabs:[]},
+{text:"Building best practices entre producto e ingeniería: dinámica, own the challenge, less democracy",area:"Engineering",date:"04/15",collabs:[]},
+{text:"YaloCode/improvement suite v1 out — already having impact in delivery",area:"Engineering",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"04/15",collabs:["Christian Saravia"]}]},
+{name:"Rafael Karkle",email:"rafael.karkle@yalo.com",goal:"Hiring People VP — 30 days finalists with 2-3 interviewers done. 90 days: hired/not hired.",items:[
+{text:"Hiring People VP — 30d finalists w/ 2-3 interviewers done",area:"People",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: Finance KPIs slide",area:"Board Prep",date:"04/15",collabs:[]},
+{text:"Board prep: checkpoint since last board — new industries progress",area:"Board Prep",date:"04/15",collabs:["Andres Stella"]}]},
+{name:"Maria Teresa",email:"mt@yalo.com",goal:"Yalo on Google Cloud Marketplace — integration completed. Loyalty decision + 2 live projects.",items:[
+{text:"Google: start sending weekly update on GCP (beginning March 27th)",area:"Partnerships",date:"03/27",collabs:[]},
+{text:"Pasarle a eng el ask de Google",area:"Partnerships",date:"03/25",collabs:[]},
+{text:"META ola verde: empaquetar sales agent journey v1 simple — CTWA con sales agent",area:"Partnerships",date:"04/06",collabs:["Andy Booth"]},
+{text:"Paquete de OTP para Banca — META",area:"Partnerships",date:"04/06",collabs:[]},
+{text:"Yalo on Google Cloud Marketplace — integration completed",area:"Partnerships",date:"90 days",collabs:[]},
+{text:"Loyalty: entender cómo funcionaría con Ever, quién lo va mantener — decision needed",area:"Partnerships",date:"04/15",collabs:[]},
+{text:"Firecrawl — look into them, explore partnership",area:"Partnerships",date:"04/15",collabs:[]}]}
+];
+let colorMap={};
+people.forEach((p,i)=>colorMap[p.name]=COLORS[i%COLORS.length]);
+let currentPerson='all';
+let checkedItems={};
+try{checkedItems=JSON.parse(localStorage.getItem('yalo_v2')||'{}')}catch(e){}
+function saveChecks(){try{localStorage.setItem('yalo_v2',JSON.stringify(checkedItems))}catch(e){}}
+function parseDate(d){
+  if(!d||d==='Ongoing')return null;
+  const match=d.match(/(\d{2})\/(\d{2})/);
+  if(match)return new Date(2026,parseInt(match[1])-1,parseInt(match[2]));
+  return null;
+}
+function isOverdue(d){const dt=parseDate(d);return dt&&dt<TODAY;}
+function isDueSoon(d){const dt=parseDate(d);if(!dt)return false;const diff=(dt-TODAY)/(1000*60*60*24);return diff>=0&&diff<=7;}
+function getKey(pi,ii){return pi+'-'+ii;}
+function totalItems(){return people.reduce((s,p)=>s+p.items.length,0);}
+function totalChecked(){return Object.values(checkedItems).filter(Boolean).length;}
+function toggleCheck(pi,ii){const k=getKey(pi,ii);checkedItems[k]=!checkedItems[k];saveChecks();render();}
+function filterPerson(name){currentPerson=name;render();}
+function render(){
+const total=totalItems();const done=totalChecked();
+document.getElementById('top-bar').innerHTML=`
+<div class="stat"><div class="stat-number">${total}</div><div class="stat-label">Total Items</div></div>
+<div class="stat"><div class="stat-number">${people.length}</div><div class="stat-label">Owners</div></div>
+<div class="stat"><div class="stat-number">${done}</div><div class="stat-label">Done</div></div>
+<div class="stat"><div class="stat-number">${total-done}</div><div class="stat-label">Open</div></div>
+<div style="flex:1;display:flex;align-items:center;gap:12px;padding-left:12px;">
+<div style="flex:1;max-width:200px;height:6px;background:#2d3348;border-radius:3px;overflow:hidden;">
+<div style="height:100%;width:${total?Math.round(done/total*100):0}%;background:linear-gradient(90deg,#4a7dff,#7aa2ff);border-radius:3px;transition:width 0.4s;"></div>
+</div><span style="font-size:13px;color:#8b92a5;">${total?Math.round(done/total*100):0}%</span></div>`;
+let navHtml='<span class="nav-label">Jump to:</span>';
+navHtml+=`<button class="nav-btn ${currentPerson==='all'?'active':''}" onclick="filterPerson(\'all\')">Everyone</button>`;
+people.forEach(p=>{
+const pDone=p.items.filter((_,ii)=>checkedItems[getKey(people.indexOf(p),ii)]).length;
+const isActive=currentPerson===p.name;
+navHtml+=`<button class="nav-btn ${isActive?'active':''}" onclick="filterPerson('${p.name}')">${p.name.split(' ')[0]}<span class="count">${pDone}/${p.items.length}</span></button>`;
+});
+document.getElementById('nav').innerHTML=navHtml;
+const filtered=currentPerson==='all'?people:people.filter(p=>p.name===currentPerson);
+let html='';
+filtered.forEach(person=>{
+const pi=people.indexOf(person);
+const pDone=person.items.filter((_,ii)=>checkedItems[getKey(pi,ii)]).length;
+const pct=person.items.length?Math.round(pDone/person.items.length*100):0;
+const initials=person.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+const color=colorMap[person.name];
+const r=18,c=2*Math.PI*r;const offset=c-(pct/100)*c;
+html+=`<div class="person-card ${currentPerson===person.name?'highlight':''}" id="card-${pi}">`;
+html+=`<div class="pc-header">
+<div class="avatar" style="background:${color}">${initials}</div>
+<div class="pc-info"><div class="pc-name">${person.name}</div><div class="pc-email">${person.email}</div></div>
+<div class="pc-stats"><div class="pc-progress"><div class="pc-progress-text">${pDone}/${person.items.length}</div>
+<div class="pc-progress-label">completed</div></div>
+<svg class="progress-ring" viewBox="0 0 44 44">
+<circle class="progress-ring-bg" cx="22" cy="22" r="${r}"/>
+<circle class="progress-ring-fill" cx="22" cy="22" r="${r}" stroke="${color}" stroke-dasharray="${c}" stroke-dashoffset="${offset}"/>
+</svg></div></div>`;
+if(person.goal){html+=`<div class="goal-section"><div class="goal-label">🎯 #1 Goal (90 days)</div><div class="goal-text">${person.goal}</div></div>`;}
+html+='<div class="pc-items">';
+person.items.forEach((item,ii)=>{
+const k=getKey(pi,ii);const isChk=checkedItems[k];
+const overdue=isOverdue(item.date);const soon=isDueSoon(item.date);
+let rowClass=isChk?'checked':'';
+if(!isChk&&overdue)rowClass+=' overdue';
+else if(!isChk&&soon)rowClass+=' due-soon';
+html+=`<div class="item-row ${rowClass}" onclick="toggleCheck(${pi},${ii})">
+<div class="cb ${isChk?'checked':''}"></div>
+<div class="item-body"><div class="item-text">${item.text}</div>
+<div class="item-tags"><span class="tag tag-area">${item.area}</span>
+${item.date?`<span class="tag ${overdue&&!isChk?'tag-overdue':'tag-date'}">${overdue&&!isChk?'⚠️ ':'📅 '}${item.date}</span>`:''}
+${item.collabs.map(c=>`<span class="tag tag-collab">w/ ${c}</span>`).join('')}
+</div></div></div>`;});
+html+='</div></div>';});
+document.getElementById('main').innerHTML=html||'<div class="empty-state">No items match your filter.</div>';}
+render();
+</script>
+</body>
+</html>
