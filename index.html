@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yalo Leadership Week — Action Items by Owner</title>
+<title>Yalo Leadership Week â Action Items by Owner</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; min-height: 100vh; }
@@ -45,7 +45,7 @@
   .item-row.due-soon { border-left-color: #fbbf24; }
   .cb { width: 20px; height: 20px; border-radius: 5px; border: 2px solid #3d4460; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; transition: all 0.15s; }
   .cb.checked { background: #4a7dff; border-color: #4a7dff; }
-  .cb.checked::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 700; }
+  .cb.checked::after { content: 'â'; color: #fff; font-size: 12px; font-weight: 700; }
   .item-body { flex: 1; min-width: 0; }
   .item-text { font-size: 14px; line-height: 1.5; color: #e1e4e8; }
   .item-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
@@ -69,8 +69,8 @@
 </head>
 <body>
 <div class="header">
-  <h1>Leadership Week March 2026 — Accountability Tracker</h1>
-  <div class="subtitle">Each person owns their items. No ambiguity. Shipped by MT.</div>
+  <h1>Leadership Week March 2026 â Accountability Tracker</h1>
+  <div class="subtitle">Each person owns their items.</div>
 </div>
 <div class="top-bar" id="top-bar"></div>
 <div class="nav" id="nav"></div>
@@ -79,76 +79,76 @@
 const COLORS=['#4a7dff','#f43f5e','#fbbf24','#10b981','#a78bfa','#f97316','#06b6d4','#ec4899','#84cc16','#14b8a6'];
 const TODAY=new Date();
 const people=[
-{name:"Andrés Cano",email:"andres@yalo.com",goal:"Have a winning LAND retail sales agent full use case: agent starter + 2 main skills + complementing agent — on WhatsApp, app or webchat. Solutions and sales fully enabled.",items:[
+{name:"AndrÃ©s Cano",email:"andres@yalo.com",goal:"Have a winning LAND retail sales agent full use case: agent starter + 2 main skills + complementing agent â on WhatsApp, app or webchat. Solutions and sales fully enabled.",items:[
 {text:"Proyecto de tool para hacer demo self service usando YaloCode / Claude Code v1",area:"Solutions",date:"04/09",collabs:[]},
 {text:"Help solutions build a better discovery and questions to ask per use case",area:"Solutions",date:"04/15",collabs:[]},
 {text:"Productizar el sales agent journey como prioridad 1",area:"Product",date:"04/30",collabs:[]},
 {text:"Weekly Update on Web/In-app readiness",area:"Product",date:"Ongoing",collabs:[]},
 {text:"Pensar en test cases de building/debugging para delivery por casos",area:"Delivery",date:"04/15",collabs:["Andres Stella","Christian Saravia"]},
-{text:"Primera versión del retail sales agent productizado",area:"Product",date:"30 days (04/25)",collabs:[]},
-{text:"Terminar de analizar condición ICP de retail (search / ecommerce / website)",area:"Product",date:"04/09",collabs:["Christian Saravia"]}]},
-{name:"Andres Stella",email:"andres.stella@yalo.com",goal:"30 días: capacitación a equipos completa. 90 días: equipo B2C completo y operando.",items:[
-{text:"Revamp propuestas para que sean realistas y re-training — hablar con Garibotti",area:"Solutions",date:"04/09",collabs:[]},
-{text:"Encontrar forma de calificar el estado de un API — hablar con Garibotti",area:"Solutions",date:"04/15",collabs:[]},
-{text:"Mandato de librería de demos pro out of the box (con Garibotti)",area:"Solutions",date:"04/15",collabs:["Christian Saravia"]},
+{text:"Primera versiÃ³n del retail sales agent productizado",area:"Product",date:"30 days (04/25)",collabs:[]},
+{text:"Terminar de analizar condiciÃ³n ICP de retail (search / ecommerce / website)",area:"Product",date:"04/09",collabs:["Christian Saravia"]}]},
+{name:"Andres Stella",email:"andres.stella@yalo.com",goal:"30 dÃ­as: capacitaciÃ³n a equipos completa. 90 dÃ­as: equipo B2C completo y operando.",items:[
+{text:"Revamp propuestas para que sean realistas y re-training â hablar con Garibotti",area:"Solutions",date:"04/09",collabs:[]},
+{text:"Encontrar forma de calificar el estado de un API â hablar con Garibotti",area:"Solutions",date:"04/15",collabs:[]},
+{text:"Mandato de librerÃ­a de demos pro out of the box (con Garibotti)",area:"Solutions",date:"04/15",collabs:["Christian Saravia"]},
 {text:"Buscar back up para Kix",area:"Solutions",date:"04/09",collabs:[]},
-{text:"Correr el performance assessment: incluir Custom Agent, campañas, HubSpot integration, practical tests",area:"Delivery",date:"04/15",collabs:[]},
+{text:"Correr el performance assessment: incluir Custom Agent, campaÃ±as, HubSpot integration, practical tests",area:"Delivery",date:"04/15",collabs:[]},
 {text:"Validar journeys por el lado de delivery y solutions",area:"Product",date:"04/09",collabs:[]},
-{text:"Capacitación a equipos completa",area:"Delivery",date:"30 days (04/25)",collabs:[]},
-{text:"Board prep: checkpoint since last board — new industries, progreso, gaps, plan",area:"Board Prep",date:"04/15",collabs:["Rafael Karkle"]}]},
-{name:"Andy Booth",email:"andrea@yalo.com",goal:"New industries offering/positioning + website updated in 30 days — measured by 10% increase in SQLs with Doris + increased positioning.",items:[
-{text:"Reducir offering deck a 3 stages: Account management, nuevas ventas, servicios — meter tema App y tech",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
-{text:"Armar offering paquetizado + campaña de dem gen en abril",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
+{text:"CapacitaciÃ³n a equipos completa",area:"Delivery",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: checkpoint since last board â new industries, progreso, gaps, plan",area:"Board Prep",date:"03/27",collabs:["Rafael Karkle"]}]},
+{name:"Andy Booth",email:"andrea@yalo.com",goal:"New industries offering/positioning + website updated in 30 days â measured by 10% increase in SQLs with Doris + increased positioning.",items:[
+{text:"Reducir offering deck a 3 stages: Account management, nuevas ventas, servicios â meter tema App y tech",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
+{text:"Armar offering paquetizado + campaÃ±a de dem gen en abril",area:"Fin. Services",date:"04/08",collabs:["Santiago Coppiano","Stephan Berger"]},
 {text:"Enviar resumen de offering a META",area:"Partnerships",date:"03/26",collabs:[]},
 {text:"Compartir rollout de Producto y Marketing de new channels + updates",area:"Product",date:"04/09",collabs:["Christian Saravia"]},
 {text:"Actualizar offering con el nuevo listado de journeys",area:"Product",date:"04/09",collabs:[]},
-{text:"Definir cómo implementar el pitch del nuevo offering",area:"Sales",date:"04/09",collabs:["Stephan Berger","Santiago Coppiano","Catalina Vives"]},
-{text:"Agregar condición ICP de retail en material de marketing",area:"Product",date:"04/09",collabs:[]},
+{text:"Definir cÃ³mo implementar el pitch del nuevo offering",area:"Sales",date:"04/09",collabs:["Stephan Berger","Santiago Coppiano","Catalina Vives"]},
+{text:"Agregar condiciÃ³n ICP de retail en material de marketing",area:"Product",date:"04/09",collabs:[]},
 {text:"Website updated with new industries positioning",area:"Marketing",date:"30 days (04/25)",collabs:[]}]},
 {name:"Stephan Berger",email:"stephan@yalo.com",goal:"Build a sales machine: right people, right pitch, right cadence. Pipe gen sessions running weekly.",items:[
-{text:"Jessica + Bruno → dar feedback e improve su training de producto",area:"People",date:"04/09",collabs:[]},
+{text:"Jessica + Bruno â dar feedback e improve su training de producto",area:"People",date:"04/09",collabs:[]},
 {text:"Hire 2 very good AEs",area:"People",date:"04/30",collabs:["Catalina Vives","Santiago Coppiano"]},
-{text:"Reducir stages en funnel retail para simplificar al cliente — evaluar si ofrecer servicio",area:"Retail",date:"04/08",collabs:["Andy Booth","Catalina Vives"]},
+{text:"Reducir stages en funnel retail para simplificar al cliente â evaluar si ofrecer servicio",area:"Retail",date:"04/08",collabs:["Andy Booth","Catalina Vives"]},
 {text:"New deck: sell the full vision BUT LAND only initial use cases (agent + skills)",area:"Retail",date:"04/08",collabs:["Santiago Coppiano"]},
-{text:"Coordinar sesiones de pipe gen — 1hr/week con foco en preparación y compromiso",area:"Sales",date:"Ongoing",collabs:[]},
+{text:"Coordinar sesiones de pipe gen â 1hr/week con foco en preparaciÃ³n y compromiso",area:"Sales",date:"Ongoing",collabs:[]},
 {text:"Todo lo comercial META verlo con Alejandro Haro",area:"Partnerships",date:"04/06",collabs:[]},
-{text:"Pitch en sales: condición ICP retail (search / ecommerce / website)",area:"Sales",date:"04/09",collabs:["Santiago Coppiano"]}]},
+{text:"Pitch en sales: condiciÃ³n ICP retail (search / ecommerce / website)",area:"Sales",date:"04/09",collabs:["Santiago Coppiano"]}]},
 {name:"Santiago Coppiano",email:"santiago.coppiano@yalo.com",goal:"Reducir time to close de nuevas industrias a 30 days. Validar palanca de Servicio y webchat + have the right team.",items:[
-{text:"Take more opportunities to better map journey and accelerate closing — financial services",area:"Fin. Services",date:"04/15",collabs:["Stephan Berger","Catalina Vives"]},
+{text:"Take more opportunities to better map journey and accelerate closing â financial services",area:"Fin. Services",date:"04/15",collabs:["Stephan Berger","Catalina Vives"]},
 {text:"Validar la prioridad de journeys",area:"Product",date:"04/09",collabs:["Catalina Vives"]},
 {text:"Definir la NAL (Named Account List)",area:"International",date:"04/07",collabs:[]},
-{text:"Definir indicadores de success / minimum thresholds — apalabrar y consensuar con Mau",area:"International",date:"04/07",collabs:[]},
-{text:"Coppi/Andy/Cata validar propuesta de Chris de use cases — confirmar que hacen sentido para producto",area:"Product",date:"04/09",collabs:["Andy Booth","Catalina Vives"]}]},
-{name:"Catalina Vives",email:"catalina.vives@yalo.com",goal:"Have 4 GREAT AE candidates on bench (30 days) → Hire 1-2 KEY people who will move the needle for the New Verticals Sales Team.",items:[
-{text:"Buscar financieras 'fins' sin el tec — define new ICP",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
-{text:"Bruno y Carlos prospectar bancos con los que trabaja Genesys — validar demanda",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
-{text:"Sumar condición ICP retail a outbound dem gen",area:"Marketing",date:"04/09",collabs:[]},
+{text:"Definir indicadores de success / minimum thresholds â apalabrar y consensuar con Mau",area:"International",date:"04/07",collabs:[]},
+{text:"Coppi/Andy/Cata validar propuesta de Chris de use cases â confirmar que hacen sentido para producto",area:"Product",date:"04/09",collabs:["Andy Booth","Catalina Vives"]}]},
+{name:"Catalina Vives",email:"catalina.vives@yalo.com",goal:"Have 4 GREAT AE candidates on bench (30 days) â Hire 1-2 KEY people who will move the needle for the New Verticals Sales Team.",items:[
+{text:"Buscar financieras 'fins' sin el tec â define new ICP",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
+{text:"Bruno y Carlos prospectar bancos con los que trabaja Genesys â validar demanda",area:"Fin. Services",date:"04/15",collabs:["Andy Booth","Stephan Berger"]},
+{text:"Sumar condiciÃ³n ICP retail a outbound dem gen",area:"Marketing",date:"04/09",collabs:[]},
 {text:"Have 4 GREAT AE candidates on bench",area:"People",date:"30 days (04/25)",collabs:[]}]},
 {name:"Christian Saravia",email:"christian@yalo.com",goal:"90 days: deliver an agentic product in new industries with clear PMF (NRR >120%). 30 days: Sales Agent Retail Template v1 ready, delivering value, easy to implement.",items:[
 {text:"Agregar los 3 journeys que quedaron por fuera del listado",area:"Product",date:"03/28",collabs:[]},
 {text:"Confirmar timeline de producto y comunicar al team",area:"Product",date:"04/02",collabs:[]},
 {text:"Sales Agent Retail Template v1 ready and delivering value",area:"Product",date:"30 days (04/25)",collabs:[]},
-{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"04/15",collabs:["Javier Mata"]},
-{text:"Poner CAP por token per conversation (B2B) / per user (B2C) — créditos de inteligencia",area:"Pricing",date:"04/15",collabs:["Andy Booth","Santiago Coppiano"]},
+{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"03/27",collabs:["Javier Mata"]},
+{text:"Poner CAP por token per conversation (B2B) / per user (B2C) â crÃ©ditos de inteligencia",area:"Pricing",date:"04/15",collabs:["Andy Booth","Santiago Coppiano"]},
 {text:"Deep dive with team building templates (Marvin, Christian)",area:"Product",date:"03/27",collabs:[]}]},
-{name:"Javier Mata",email:"javier@yalochat.com",goal:"90 days: have the CTO hired. 30 days: finalists identified. Become agentic in RnD ops — reduce time to real value by 50%.",items:[
-{text:"Define agent standard templates: Custom agents, Oris, Oris forked, or other? How to make upgradeable → productized skills/templates",area:"Engineering",date:"04/30",collabs:["Christian Saravia"]},
-{text:"Contratar CTO — 30 días finalists, 90 días CTO hired",area:"Engineering",date:"06/30",collabs:[]},
-{text:"Building best practices entre producto e ingeniería: dinámica, own the challenge, less democracy",area:"Engineering",date:"04/15",collabs:[]},
-{text:"YaloCode/improvement suite v1 out — already having impact in delivery",area:"Engineering",date:"30 days (04/25)",collabs:[]},
-{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"04/15",collabs:["Christian Saravia"]}]},
-{name:"Rafael Karkle",email:"rafael.karkle@yalo.com",goal:"Hiring People VP — 30 days finalists with 2-3 interviewers done. 90 days: hired/not hired.",items:[
-{text:"Hiring People VP — 30d finalists w/ 2-3 interviewers done",area:"People",date:"30 days (04/25)",collabs:[]},
-{text:"Board prep: Finance KPIs slide",area:"Board Prep",date:"04/15",collabs:[]},
-{text:"Board prep: checkpoint since last board — new industries progress",area:"Board Prep",date:"04/15",collabs:["Andres Stella"]}]},
-{name:"Maria Teresa",email:"mt@yalo.com",goal:"Yalo on Google Cloud Marketplace — integration completed. Loyalty decision + 2 live projects.",items:[
+{name:"Javier Mata",email:"javier@yalochat.com",goal:"90 days: have the CTO hired. 30 days: finalists identified. Become agentic in RnD ops â reduce time to real value by 50%.",items:[
+{text:"Define agent standard templates: Custom agents, Oris, Oris forked, or other? How to make upgradeable â productized skills/templates",area:"Engineering",date:"04/30",collabs:["Christian Saravia"]},
+{text:"Contratar CTO â 30 dÃ­as finalists, 90 dÃ­as CTO hired",area:"Engineering",date:"06/30",collabs:[]},
+{text:"Building best practices entre producto e ingenierÃ­a: dinÃ¡mica, own the challenge, less democracy",area:"Engineering",date:"04/15",collabs:[]},
+{text:"YaloCode/improvement suite v1 out â already having impact in delivery",area:"Engineering",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: slide on QA testing suite y eval dashboard",area:"Board Prep",date:"03/27",collabs:["Christian Saravia"]}]},
+{name:"Rafael Karkle",email:"rafael.karkle@yalo.com",goal:"Hiring People VP â 30 days finalists with 2-3 interviewers done. 90 days: hired/not hired.",items:[
+{text:"Hiring People VP â 30d finalists w/ 2-3 interviewers done",area:"People",date:"30 days (04/25)",collabs:[]},
+{text:"Board prep: Finance KPIs slide",area:"Board Prep",date:"03/27",collabs:[]},
+{text:"Board prep: checkpoint since last board â new industries progress",area:"Board Prep",date:"03/27",collabs:["Andres Stella"]}]},
+{name:"Maria Teresa",email:"mt@yalo.com",goal:"Yalo on Google Cloud Marketplace â integration completed. Loyalty decision + 2 live projects.",items:[
 {text:"Google: start sending weekly update on GCP (beginning March 27th)",area:"Partnerships",date:"03/27",collabs:[]},
 {text:"Pasarle a eng el ask de Google",area:"Partnerships",date:"03/25",collabs:[]},
-{text:"META ola verde: empaquetar sales agent journey v1 simple — CTWA con sales agent",area:"Partnerships",date:"04/06",collabs:["Andy Booth"]},
-{text:"Paquete de OTP para Banca — META",area:"Partnerships",date:"04/06",collabs:[]},
-{text:"Yalo on Google Cloud Marketplace — integration completed",area:"Partnerships",date:"90 days",collabs:[]},
-{text:"Loyalty: entender cómo funcionaría con Ever, quién lo va mantener — decision needed",area:"Partnerships",date:"04/15",collabs:[]},
-{text:"Firecrawl — look into them, explore partnership",area:"Partnerships",date:"04/15",collabs:[]}]}
+{text:"META ola verde: empaquetar sales agent journey v1 simple â CTWA con sales agent",area:"Partnerships",date:"04/06",collabs:["Andy Booth"]},
+{text:"Paquete de OTP para Banca â META",area:"Partnerships",date:"04/06",collabs:[]},
+{text:"Yalo on Google Cloud Marketplace â integration completed",area:"Partnerships",date:"90 days",collabs:[]},
+{text:"Loyalty: entender cÃ³mo funcionarÃ­a con Ever, quiÃ©n lo va mantener â decision needed",area:"Partnerships",date:"04/15",collabs:[]},
+{text:"Firecrawl â look into them, explore partnership",area:"Partnerships",date:"04/15",collabs:[]}]}
 ];
 let colorMap={};
 people.forEach((p,i)=>colorMap[p.name]=COLORS[i%COLORS.length]);
@@ -207,7 +207,7 @@ html+=`<div class="pc-header">
 <circle class="progress-ring-bg" cx="22" cy="22" r="${r}"/>
 <circle class="progress-ring-fill" cx="22" cy="22" r="${r}" stroke="${color}" stroke-dasharray="${c}" stroke-dashoffset="${offset}"/>
 </svg></div></div>`;
-if(person.goal){html+=`<div class="goal-section"><div class="goal-label">🎯 #1 Goal (90 days)</div><div class="goal-text">${person.goal}</div></div>`;}
+if(person.goal){html+=`<div class="goal-section"><div class="goal-label">ð¯ #1 Goal (90 days)</div><div class="goal-text">${person.goal}</div></div>`;}
 html+='<div class="pc-items">';
 person.items.forEach((item,ii)=>{
 const k=getKey(pi,ii);const isChk=checkedItems[k];
@@ -219,7 +219,7 @@ html+=`<div class="item-row ${rowClass}" onclick="toggleCheck(${pi},${ii})">
 <div class="cb ${isChk?'checked':''}"></div>
 <div class="item-body"><div class="item-text">${item.text}</div>
 <div class="item-tags"><span class="tag tag-area">${item.area}</span>
-${item.date?`<span class="tag ${overdue&&!isChk?'tag-overdue':'tag-date'}">${overdue&&!isChk?'⚠️ ':'📅 '}${item.date}</span>`:''}
+${item.date?`<span class="tag ${overdue&&!isChk?'tag-overdue':'tag-date'}">${overdue&&!isChk?'â ï¸ ':'ð '}${item.date}</span>`:''}
 ${item.collabs.map(c=>`<span class="tag tag-collab">w/ ${c}</span>`).join('')}
 </div></div></div>`;});
 html+='</div></div>';});
